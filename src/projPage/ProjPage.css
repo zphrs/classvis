@@ -1,0 +1,289 @@
+@media (prefers-reduced-motion) {
+	* {
+		transition: none !important;
+	}
+}
+
+html {
+  --background-color: black;
+  --background-color-opacity: rgba(0, 0, 0, .5);
+  --background-faded: #404040;
+  --content-color: white;
+  --content-color-opacity: rgba(255, 255, 255, .5);
+  --content-faded: #bfbfbf;
+  --transition-speed: 1s;
+  --transition-timing:  ease-in-out;
+  background-color: var(--background-color);
+  color: var(--content-color);
+}
+
+.uploader {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	background-color: var(--background-color);
+	color: var(--content-color);
+}
+.uploader-inner {
+	position: relative;
+	width: min(100%, 500px);
+}
+
+.class-holder {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	overflow-y: auto;
+	font-size: max(.8em, 12px);
+	transition: max-height var(--transition-speed) ease;
+	border-radius: 5px;
+	justify-content: left;
+	padding: -5px;
+	background-color: var(--background-faded);
+}
+.classbox.invert > div > .class-holder {
+	background-color: var(--content-faded);
+}
+.class-holder::-webkit-scrollbar {
+	width: 5px;
+}
+.class-holder::-webkit-scrollbar-track {
+	background-color: var(--content-color-opacity);
+	border-radius: 0 5px 5px 0;
+}
+.classbox.invert > div > .class-holder::-webkit-scrollbar-track {
+	background-color: var(--background-color-opacity);
+}
+.class-holder::-webkit-scrollbar-thumb {
+	background-color: var(--content-color-opacity);
+	opacity: .5;
+	border-radius: 0 5px 5px 0;
+}
+.classbox.invert > div > .class-holder::-webkit-scrollbar-thumb {
+	background-color: var(--background-color-opacity);
+}
+
+.class-holder.hide {
+	max-height: 0px !important;
+}
+.classbox {
+  flex: 1 1 clamp(325px, calc(50% - 35px), 500px);
+  background-color: var(--background-color);
+  color: var(--content-color);
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.classbox.invert {
+	background-color: var(--content-color);
+	color: var(--background-color);
+}
+#root {
+	height: 100%;
+	width: 100%;
+	font-size: 1rem;
+}
+.all-classes {
+	font-size: 2rem;
+}
+.all-classes > .classbox {
+	margin: 0px;
+	border: none;
+}
+
+.settings {
+	max-height: 200px;
+	transition: max-height var(--transition-speed) var(--transition-timing), background-color 1s; 
+	display: flex;
+	flex-wrap: wrap;
+	overflow-y: auto;
+	padding-bottom: 5px;
+	background-color: rgba(0, 0, 0, 0);
+}
+.settings > * {
+	flex: 0 1;
+}
+.form > p {
+	min-width: 100%;
+	font-size: 13px;
+	color: grey;
+	margin: 0;
+	margin-left: 3px;
+}
+.settings.hide {
+	max-height: 0px;
+	overflow: hidden;
+}
+.settings.delete {
+	background-color: rgba(120, 0, 0, 1);
+}
+.class-vars {
+	max-height: 100px;
+	display: block;
+	height: fit-content;
+	overflow-y: auto;
+	margin: 5px;
+	transition: max-height var(--transition-speed) var(--transition-timing);
+}
+.class-vars.hide {
+	overflow: hidden;
+	max-height: 0;
+}
+.contains-all {
+	height: fit-content;
+	overflow-y: auto;
+	max-height: 100vh;
+	transition: max-height calc(var(--transition-speed) * .5) var(--transition-timing);
+}
+.contains-all.hide {
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height calc(var(--transition-speed) * 2) var(--transition-timing);
+}
+.class-var {
+	color: var(--background-color);
+	font-weight: 500;
+}
+.deleteable-p {
+	border-radius: 17.5px;
+	padding: 0;
+	display: inline-block;
+	border: none;
+	margin-right: 7px;
+	margin-bottom: 5px;
+	height: 25px;
+	transition: background-color .5s, border-radius 1s ease-out;
+}
+.deleteable-p.delete {
+	background-color: lightcoral;
+	position: relative;
+	padding-right: 28px;
+	border-radius: 0px !important;
+}
+.deleteable-p.delete > p {
+	position: relative;
+	top: 0;
+	margin-right: 28px;
+}
+.deleteable-p.delete .delete-btn {
+	padding-left: calc(100% - 45px);
+	padding-right: 25px;
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 5;
+	border-radius: 0px !important;
+	background-color: rgba(120, 0, 0, 1);
+}
+.deleteable-p:hover .delete-btn{
+	border-radius: 17.5px 0px 0px 17.5px;
+}
+.deleteable-p:hover {
+	background-color: lightcoral;
+	border-radius: 0px;
+}
+.deleteable-p > p {
+	display: inline-block;
+	width: fit-content;
+	padding: 0;
+	padding-left: 10px;
+	margin: 0;
+	height: 25px;
+	line-height: 25px;
+	border-width: 2px;
+}
+.delete-btn {
+	width: 20px;
+	height: 15px;
+	border-radius: 0 17.5px 17.5px 0;
+	border: none;
+	transition: border-radius .5s ease-out, padding-left .5s ease-in-out, background-color .5s ease-in-out;
+	padding: 5px 9px;
+	margin-left: 2px;
+	display: inline;
+	color: white;
+	background-color: rgba(0, 0, 0, .5);
+}
+.delete-class-btn {
+	border: none;
+	padding: 5px 9px;
+	border-radius: 17.5px;
+	flex-basis: 100%;
+	transition: background-color 1s, border-radius 1s;
+}
+.delete-class-btn:hover {
+	border-radius: 5px;
+	background-color: lightcoral;
+}
+.delete .delete-class-btn {
+	background-color: rgba(120, 0, 0, 1);
+	border-radius: 0px;
+}
+button {
+	cursor: pointer;
+}
+.collapsable-btn {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	border: none;
+	border-radius: 50%;
+	margin: 10px;
+	top: 0;
+	transform: rotate(90deg);
+	transition: transform calc(var(--transition-speed) * 1.5) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+h1 {
+	margin: 0px;
+	font-size: 1.5em;
+}
+h2 {
+	font-size: 1.6em;
+	font-weight: 650;
+}
+.collapsable-btn.hide {
+	transform: rotate(-90deg);
+}
+.inline-block-header {
+	display: inline-block;
+	width: fit-content;
+	margin: 0;
+}
+h1.inline-block-header::after {
+	content: '.java';
+	font-size: .4em;
+}
+.form {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	font-size: 12px;
+	margin: 5px;
+}
+.form.new-var {
+	flex-basis: 300px;
+}
+.form.new-funct {
+	flex-basis: 300px;
+}
+.form.new-var > input[type=text] {
+	width: clamp(85px, calc(33% - 5px), 100px);
+}
+.form.new-funct > input[type=text] {
+	width: clamp(85px, calc(33% - 5px), 100px);
+}
+.form.new-class {
+	flex-basis: 150px;
+}
+.form.new-class > input[type=text] {
+	width: min(150px, 95%);
+}
+select {
+	font-size: inherit;
+	padding: 1px 2px;
+	width: clamp(8em, 30%, 100px);
+}
